@@ -6,15 +6,15 @@
     <title>Pomodoro Timer</title>
     <style>
       * {
-        box-sizing: border-box;
         padding: 0;
         margin: 0;
+        box-sizing: border-box;
       }
-
-      dialog::backdrop {
-        background: #00000080;
+      body {
+        width: 100vw;
+        height: 100vh;
+        position: relative;
       }
-
       dialog {
         margin: auto;
         border: none;
@@ -24,13 +24,6 @@
         text-align: center;
         position: relative;
       }
-      #buttonDiv {
-        position: absolute;
-        bottom: 0;
-        margin: auto;
-        width: 100%;
-      }
-
       @property --p {
         syntax: "<percentage>";
         inherits: false;
@@ -38,68 +31,63 @@
       }
       #pomodoro {
         width: 200px;
+        border: 2px solid black;
         aspect-ratio: 1;
         border-radius: 50%;
-        border: 4px solid black;
-        --p: 0%; /*fallback*/
-        background: conic-gradient(red var(--p), #eee 0);
-        transition: --p 2s linear;
-        position: relative;
         margin: auto;
-        cursor: progress;
+        background: conic-gradient(red var(--p), #eee 0);
+        position: relative;
+        transition: --p 0.05s linear;
       }
-
       #pomodoro::before {
         position: absolute;
         inset: 3px;
-        content: "";
         border-radius: inherit;
         background: white;
+        content: "";
       }
       #hand {
         width: 80px;
         height: 4px;
-        margin: auto;
-        transform: rotate(90deg);
         background-color: black;
         top: 50%;
         left: 50%;
         position: absolute;
         transform-origin: 100% 50%;
-        transition: all 0.05s;
+        transition: all 0.05s linear;
         transform: translate(-100%, -50%) rotate(90deg);
       }
       #hand::after {
-        content: "";
         width: 16px;
-        background-color: black;
-        aspect-ratio: 1;
         border-radius: 50%;
+        aspect-ratio: 1;
         position: absolute;
-        transform: translate(-50%, -50%);
         top: 50%;
+        content: "";
         left: 100%;
+        background-color: black;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
       }
     </style>
   </head>
   <body>
-    <button id="open">Open Modal</button>
-    <dialog id="modal">
+    <button id="open">Open</button>
+    <dialog>
       <h1>Pomodoro Timer</h1>
-      <p>Read a Book</p>
-
+      <p>Read a book</p>
       <figure>
         <div id="pomodoro">
           <div id="hand"></div>
         </div>
+        <p id="time">25:00</p>
+        <div>
+          <button id="start">Start</button>
+          <button id="pause">Pause</button>
+          <button id="reset">Reset</button>
+          <button id="close">Close</button>
+        </div>
       </figure>
-      <p id="time"></p>
-      <div id="buttonDiv">
-        <button id="start">Start</button>
-        <button id="pause">Pause</button>
-        <button id="reset">Reset</button>
-        <button id="close">Close</button>
-      </div>
     </dialog>
     <script src="jquery.js"></script>
     <script src="index.js"></script>

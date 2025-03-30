@@ -1,0 +1,9 @@
+in need a variable for the initial, minutes, seconds isPause and the seconds remaining
+intialize all the jquery dom variables
+start fx: set the isPause to be false, seconds remaining to be the inital minites / 60 and the interval to be setInterval(updateTimer, 1000)
+pause fx: set the ispause to be true and clear the interval
+resume fx: set isPause to be false, interval to be setInterval(updateTimer, 1000)
+reset timer fx: isPause is false, clear the interval the timer text and updateVisual()
+updateText fx(minutes, seconds) set the min and sec to the parameter for the timer text
+updateVisual fx(progress, degree): update the progress and hand visual : might need a parameter of minutes
+updateTimer fx: if secondsRemaing < 0 reset timer, play audio else calculate the min, seconds, progress, degrees. secondsRemaining-- and update the text and visual
