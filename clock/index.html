@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pomodoro Timer</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+
+      dialog::backdrop {
+        background: #00000080;
+      }
+
+      dialog {
+        margin: auto;
+        border: none;
+        box-shadow: 1px 2px 5px lightgray;
+        width: 250px;
+        height: 300px;
+        text-align: center;
+        position: relative;
+      }
+      #buttonDiv {
+        position: absolute;
+        bottom: 0;
+        margin: auto;
+        width: 100%;
+      }
+
+      @property --p {
+        syntax: "<percentage>";
+        inherits: false;
+        initial-value: 0%;
+      }
+      #pomodoro {
+        width: 200px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        border: 4px solid black;
+        --p: 0%; /*fallback*/
+        background: conic-gradient(red var(--p), #eee 0);
+        transition: --p 2s linear;
+        position: relative;
+        margin: auto;
+        cursor: progress;
+      }
+
+      #pomodoro::before {
+        position: absolute;
+        inset: 3px;
+        content: "";
+        border-radius: inherit;
+        background: white;
+      }
+      #hand {
+        width: 80px;
+        height: 4px;
+        margin: auto;
+        transform: rotate(90deg);
+        background-color: black;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform-origin: 100% 50%;
+        transition: all 0.05s;
+        transform: translate(-100%, -50%) rotate(90deg);
+      }
+      #hand::after {
+        content: "";
+        width: 16px;
+        background-color: black;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="open">Open Modal</button>
+    <dialog id="modal">
+      <h1>Pomodoro Timer</h1>
+      <p>Read a Book</p>
+
+      <figure>
+        <div id="pomodoro">
+          <div id="hand"></div>
+        </div>
+      </figure>
+      <p id="time"></p>
+      <div id="buttonDiv">
+        <button id="start">Start</button>
+        <button id="pause">Pause</button>
+        <button id="reset">Reset</button>
+        <button id="close">Close</button>
+      </div>
+    </dialog>
+    <script src="jquery.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
