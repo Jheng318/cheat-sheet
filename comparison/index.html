@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Image Compare</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div>
+      <input type="range" min="0" max="100" id="range" value="50" />
+      <img src="before.jpg" id="before" />
+      <img src="after.jpg" id="after" />
+    </div>
+  </body>
+  <script src="../jquery.js"></script>
+  <script>
+    const range = $("#range");
+    const after = $("#after");
+    range.on("input", (e) => {
+      after.css(
+        "clip-path",
+        `polygon(${e.target.value}% 0, 100% 0, 100% 100%, ${e.target.value}% 100%)`
+      );
+    });
+  </script>
+</html>
